@@ -34,3 +34,52 @@
    ```bash
    poetry run ptrack --version
 
+## How to Use the Tool
+
+**PTRack** is a command-line tool designed for simplicity and flexibility. Here’s a step-by-step guide to using it effectively:
+
+1. **Prepare Your CSV File**:
+   - Create a CSV with a header (e.g., "IP") in the first column, followed by IP addresses (e.g., `8.8.8.8`, `192.168.0.1`).
+   - Example (`ips.csv`):
+     ```
+     IP
+     8.8.8.8
+     192.168.0.1
+     invalid_ip
+     ```
+
+2. **Run the Tool**:
+   - Basic command:
+     ```bash
+     poetry run ptrack ips.csv 8.8.8.8
+     ```
+   - Add options for customization (see **Common Options** below).
+
+3. **Interpret the Output**:
+   - **JSON (default)**: Check `"overview"` for stats and `"analysis"` for successful lookups (configurable with `--show-invalid` and `--show-no-records`).
+   - **CSV**: Open in a spreadsheet for tabular data with comments summarizing stats.
+
+4. **Leverage Caching**:
+   - Use `--cache-file=cache.json` to save results and speed up future runs on the same IPs.
+
+5. **Monitor Progress**:
+   - Watch `stderr` for updates (e.g., `"Processing IPs: 50% (2500/5000)"`).
+   - Enable `--log-level=info` for detailed timing and cache usage logs.
+
+## Common Options
+
+- **Detailed Logs**: `--log-level=info` (e.g., `[INFO] Processing 8.8.8.8 took 0.45s`).
+- **CSV Output**: `--format=csv` (spreadsheet-friendly).
+- **Cache Results**: `--cache-file=cache.json` (reduces runtime on repeat runs).
+- **Show All IPs**: `--show-invalid` (includes invalid IPs), `--show-no-records` (includes IPs with no DNS records).
+- **Version Check**: `--version` (displays `PTRack 1.0.0`).
+
+## Common Use Cases
+
+**PTRack** is versatile for various network-related tasks. Here are some typical scenarios and how to apply the tool:
+
+### 1. Checking Public IP DNS Records
+- **Scenario**: You have a list of public IPs (e.g., from a server log) and want to identify their domains.
+- **Command**:
+  ```bash
+  poetry run ptrack public_ips.csv 8.8.8.8
