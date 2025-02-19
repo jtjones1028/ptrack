@@ -25,3 +25,12 @@
    ```bash
    git clone https://github.com/jtjones1028/ptrack.git
    cd ptrack
+
+2. **Install with Poetry**:
+   ```bash
+   poetry install
+
+3. **Verify Installation**:
+   ```bash
+   poetry install
+
