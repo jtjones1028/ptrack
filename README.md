@@ -32,5 +32,5 @@
 
 3. **Verify Installation**:
    ```bash
-   poetry install
+   poetry run ptrack --version
 
